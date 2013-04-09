@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="15" height="15" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="id" value="1"/>
+ </properties>
+ <tileset firstgid="1" name="atlas" tilewidth="32" tileheight="32">
+  <image source="../images/atlas.png" trans="ff00ff" width="208" height="254"/>
+ </tileset>
+ <layer name="ground&amp;bridges" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBjZgBGImdAwMxBzEqGXnQJ7YXoZofaxQPmCSG4gpBdGi0NpLiLs5UWjYUAAjx4RIBYFYm4oXxgqBhMXI8JedECMW2Hm80P5glAa5l9Q2BETTyCA7j9K4o7aAABfPgHA
+  </data>
+ </layer>
+ <objectgroup name="roller&amp;end" width="15" height="15">
+  <object type="player" x="225" y="226" width="26" height="26">
+   <ellipse/>
+  </object>
+  <object type="end" x="352" y="386" width="30" height="29"/>
+ </objectgroup>
+ <objectgroup name="collisions" width="15" height="15">
+  <object type="platform" x="0" y="-3" width="477" height="60"/>
+  <object type="platform" x="-3" y="-11" width="61" height="493"/>
+  <object type="platform" x="-7" y="419" width="492" height="62"/>
+  <object type="platform" x="420" y="-4" width="63" height="487"/>
+  <object type="platform" x="128" y="130" width="224" height="26"/>
+  <object type="platform" x="326" y="193" width="92" height="25"/>
+  <object type="platform" x="326" y="195" width="24" height="124"/>
+  <object type="platform" x="193" y="293" width="157" height="26"/>
+  <object type="platform" x="192" y="194" width="24" height="124"/>
+  <object type="platform" x="194" y="195" width="92" height="24"/>
+  <object type="platform" x="263" y="196" width="23" height="61"/>
+  <object type="platform" x="130" y="129" width="22" height="191"/>
+  <object type="platform" x="59" y="292" width="94" height="28"/>
+  <object type="platform" x="57" y="356" width="103" height="26"/>
+  <object type="platform" x="199" y="353" width="24" height="66"/>
+  <object type="platform" x="263" y="316" width="23" height="67"/>
+  <object type="platform" x="324" y="353" width="61" height="25"/>
+  <object type="platform" x="323" y="355" width="21" height="65"/>
+ </objectgroup>
+</map>

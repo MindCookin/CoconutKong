@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="15" height="15" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="id" value="1"/>
+ </properties>
+ <tileset firstgid="1" name="atlas" tilewidth="32" tileheight="32">
+  <image source="../images/atlas.png" trans="ff00ff" width="206" height="254"/>
+ </tileset>
+ <layer name="ground&amp;bridges" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBjagBGImXBgZiBmwaOXnYDZXHjkeHHYD7OPGL3o9nOh0fj0wmhWMvSyo/HJ0SsMxKJALEaCXl4c8sToBdknArUTGYvh0IfPvsEGANJGAgM=
+  </data>
+ </layer>
+ <objectgroup name="roller&amp;end" width="15" height="15">
+  <object type="player" x="63" y="381" width="26" height="26">
+   <ellipse/>
+  </object>
+  <object type="end" x="255" y="255" width="30" height="29"/>
+ </objectgroup>
+ <objectgroup name="collisions" width="15" height="15">
+  <object type="platform" x="0" y="-3" width="477" height="60"/>
+  <object type="platform" x="-3" y="-11" width="61" height="493"/>
+  <object type="platform" x="-9" y="414" width="492" height="70"/>
+  <object type="platform" x="420" y="-4" width="63" height="487"/>
+  <object type="platform" x="97" y="97" width="23" height="326"/>
+  <object type="platform" x="98" y="97" width="284" height="26"/>
+  <object type="platform" x="357" y="97" width="24" height="282"/>
+  <object type="platform" x="161" y="355" width="219" height="24"/>
+  <object type="platform" x="160" y="160" width="23" height="218"/>
+  <object type="platform" x="161" y="161" width="157" height="25"/>
+  <object type="platform" x="296" y="161" width="22" height="156"/>
+  <object type="platform" x="223" y="293" width="95" height="23"/>
+  <object type="platform" x="223" y="224" width="24" height="90"/>
+ </objectgroup>
+</map>

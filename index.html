@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=us-ascii">
+
+		<meta charset="utf-8">
+
+		<title>Coconut Kong</title>
+		
+		<!--=============	Styles	================-->
+		<link rel="stylesheet" href="css/stylesheet.css" type="text/css" charset="utf-8">
+		<link rel="stylesheet" href="css/styles.css">
+
+		<!--=============	Game	================-->
+		<script src="js/libs/jquery/jquery.js"></script>
+		<script src="js/libs/queryloader/jquery.queryloader2.js"></script>
+		<script src="js/libs/box2D/Box2dWeb-2.1.a.3.min.js"></script> 
+	
+		<script src="http://cufon.shoqolate.com/js/cufon-yui.js" type="text/javascript"></script>
+		<script src="js/libs/badaboom-bb.cufonfonts.js" type="text/javascript"></script>
+
+		<script src="js/util/core.js"></script>
+		<script src="js/util/general.js"></script>
+		<script src="js/util/xhr.js"></script>
+		
+		<script src="js/World.js"></script>
+		<script src="js/util/SoundManager.js"></script>
+		<script src="js/InputEngine.js"></script>
+		<script src="js/GameEngine.js"></script>
+		
+		<script src="js/util/level.js"></script>
+		
+		<script src="js/view/buttons.js"></script>
+		<script src="js/view/levelSelector.js"></script>
+		<script src="js/view/background.js"></script>
+		<script src="js/view/TILEDMapClass.js"></script>
+		<script src="js/view/spritesheet.js"></script>
+		
+		<script src="js/entity/Entity.js"></script>
+		<script src="js/entity/Player.js"></script>
+		<script src="js/entity/Roller.js"></script>
+		
+		<script src="js/Manager.js"></script>
+		<script src="js/Initializer.js"></script>
+
+	</head>
+
+	<body id="body">
+		
+		<div id="wrapper">
+			
+			<p id="fps">FPS container</p>
+			
+			<h1>Coconut Kong</h1>
+			
+			<ul id="levelsList">
+				<li class="active"><a href="#1">Level 1</a><span class="timer">0:00</span></li>
+				<li><a href="#2">Level 2</a><span class="timer">0:00</span></li>
+				<li><a href="#3">Level 3</a><span class="timer">0:00</span></li>
+				<li><a href="#4">Level 4</a><span class="timer">0:00</span></li>
+				<li><a href="#5">Level 5</a><span class="timer">0:00</span></li>
+				<li><a href="#6">Level 6</a><span class="timer">0:00</span></li>
+				<li><a href="#7">Level 7</a><span class="timer">0:00</span></li>
+				<li><a href="#8">Level 8</a><span class="timer">0:00</span></li>
+				<li><a href="#9">Level 9</a><span class="timer">0:00</span></li>
+				<li><a href="#10">Level 10</a><span class="timer">0:00</span></li>
+			</ul>	
+			<div id="gameWrapper">
+				<canvas width="575" height="575" id="canvas">Sorry, your browser cannot render HTML5 canvas.</canvas>
+				<div id="infoPopup">
+					<div class="textWrapper">
+						<h2>Developed by <a target="_blank" href="http://www.linkedin.com/in/santiagobernabe" title="My Linked In">Santiago Bernabe Garcia</a> a.k.a. <a target="_blank" href="https://twitter.com/mindcookin" title="Mind Cookin's twitter">Mind Cookin</a></h2>
+						<br />
+						<p>Resources:
+							<br /> 
+							My personal modifications on <a target="_blank" href="http://blog.spiralgraphics.biz/2011/01/mystery-forest-tile-set.html">Spiral's Mistery Forest free tile set</a>,  
+							<a target="_blank" href="http://www.fontsquirrel.com/fonts/londrina">Lodrina font at  fontsquirrel.com</a>, 
+							<a target="_blank" href="http://www.playonloop.com/2013-music-loops/snowy-hill/">Snowy Hill music at playonloop.com</a>, 
+							<a target="_blank" href="http://www.freesound.org/people/timgormly/sounds/170147/">timgormly's 8-bit coin sound</a>, 
+							<a target="_blank" href="http://www.freesound.org/people/mattwasser/sounds/58919/">mattwasser's coin-up sound</a>.
+						</p>
+						<br />
+						<p>Tools:
+							<br />
+							<a target="_blank" href="http://www.codeandweb.com/texturepacker">Texture Packer</a>, 
+							<a target="_blank" href="http://www.mapeditor.org/">Tiled</a>, 
+							<a target="_blank" href="http://www.aptana.com/">Aptana</a>.
+						</p>
+						<br />
+						<p>Frameworks and Snippets:
+							<br />
+							<a target="_blank" href="https://code.google.com/p/box2dweb/">Box2Dweb</a>,
+							<a target="_blank" href="http://jquery.com/">jQuery</a>,
+							<a target="_blank" href="http://www.gayadesign.com/diy/queryloader2-preload-your-images-with-ease/">Query Loader2</a>,
+						</p>
+						<br />
+						<p>All resourced licensed by <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">( CC BY 3.0 )</a> except Londrina Font, licensed by <a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank">(CC BY-SA 3.0)</a> </p>
+						<br />
+						<a href="#" class="btnBackToGame">Back to game</a>
+					</div>
+				</div>
+				<div id="helpPopup">
+					<p>Move over your mouse to rotate the stage.</p>
+					<p>Bring the coconut to our hungry Kong, you know he will appreciate it!</p>
+						<br />
+					<a class="btnPlay" href="#">Play!</a>
+					<p class="centered"><img src="images/ajax-loader.gif" title="loading..." /></p>
+				</div>
+				<div id="finishPopup">
+					<p>Kongratulations!! You have completed Coconut Kong!!</p>
+					<br />
+					<p>You can now switch between levels so go on and beat yourself: complete the levels in the shortest amount of time!</p>
+					<br />
+					<a class="btnPlayAgain" href="#">Play!</a>
+				</div>
+				<ul id="stateButtons">
+					<li><a href="#" class="btnMute">Toggle sounds</a></li>
+					<li><a href="#" class="btnPause">Pause game</a></li>
+					<li><a href="#" class="btnInfo">Game Info</a></li>
+				</ul>
+				
+			</div>
+			<hr />
+			
+			
+		</div>	
+	</body>
+	<script type="text/javascript">
+//		Cufon.replace('#levelsList a', { fontFamily: 'BadaBoom BB', hover: true }); 
+//		Cufon.replace('#helpPopup', { fontFamily: 'BadaBoom BB', hover: true });  
+//		Cufon.replace('#infoPopup', { fontFamily: 'BadaBoom BB', hover: true });  
+//		Cufon.replace('#finishPopup', { fontFamily: 'BadaBoom BB', hover: true });  
+	</script>
+</html>
