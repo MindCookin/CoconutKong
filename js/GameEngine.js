@@ -1,18 +1,40 @@
+
+/*********************************************
+ *	
+ * Based on GameEngineClass from Udacitiy
+ * 
+ ************************************************/
+
 GameEngineClass = Class.extend({
 
+	// entities array
 	entities: [],
+	
+	// factory of entities
     factory: {},
+    
+    // dictionary of types for entities
     dictionary: {},
 
-	//-----------------------------
+	/**
+	 * Initialization function 
+	 */
 	setup: function () {
 		
+		// create new entities objects 
+		// and update dictionary
 		gGameEngine.spawnEntity('Roller');
 		gGameEngine.spawnEntity('Coconut');
 
+		// call to create Roller method
 		gGameEngine.getEntity('Roller').create();
 	},
 
+	/**
+	 * create a new entity object
+	 * and adds it to the dictionary
+ 	 * @param {String} typename
+	 */
     spawnEntity: function (typename) {
         
         var ent = new (gGameEngine.factory[typename])();
@@ -22,11 +44,17 @@ GameEngineClass = Class.extend({
 
         return ent;
     },
-    
+    /**
+     * get the entity from its typename 
+ 	 * @param {Object} typename
+     */
     getEntity : function( typename){
     	return  gGameEngine.dictionary[ typename ];
     },
 
+	/**
+	 * update all entities in the factory 
+	 */
     update: function () {
     	
         gGameEngine.entities.forEach(function(entity) {
@@ -35,11 +63,10 @@ GameEngineClass = Class.extend({
 
     },
 
-    //-----------------------------
+	/**
+	 * draw all entities in the factory 
+	 */
     draw: function () {
-        // Draw map. Note that we're passing a canvas context
-        // of 'null' in. This would normally be our game context,
-        // but we don't need to grade this here.
         
         // Bucket entities by zIndex
         var zIndex_array = [];
@@ -56,4 +83,3 @@ GameEngineClass = Class.extend({
 });
 
 gGameEngine = new GameEngineClass();
-
