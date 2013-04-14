@@ -1,0 +1,43 @@
+About the game  :
+
+Have you ever feed a Kong? Well, now you have the opportunity to do it! Rollover the screen and give our little kong ( I am not sure even what is it ) his favourite meal, a coconut!
+
+Coconut Kong is a physics game inspired in old school arcade games. Simple and easy to use, like in the old times...
+
+Have a good time!
+
+Resources:
+	
+Graphics						
+	http://creativecommons.org/licenses/by/3.0/ ( CC BY 3.0 )
+	My own modification of the great Spiral's Mistery Forest tile set.
+	http://spiralgraphics.biz/packs/usage_rights.htm
+	
+Fonts
+	
+	http://www.fontsquirrel.com/fonts/londrina
+	http://creativecommons.org/licenses/by-sa/3.0/ ( CC BY-SA 3.0 )	
+	
+Music and Sounds						
+	http://creativecommons.org/licenses/by/3.0/ ( CC BY 3.0 )
+	http://www.playonloop.com/2013-music-loops/snowy-hill/
+	Snowy Hill music at playonloop.com
+	
+	http://creativecommons.org/licenses/by/3.0/ ( CC BY 3.0 )
+	http://www.freesound.org/people/timgormly/sounds/170147/
+	timgormly's 8-bit coin sound
+							
+	http://creativecommons.org/licenses/by/3.0/ ( CC BY 3.0 )
+	http://www.freesound.org/people/mattwasser/sounds/58919/
+	mattwasser's coin-up sound
+
+Game
+	Coconut Kong by Santiago Bernabé García ( www.mindcookin.com )
+	The game is licensed under  Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. http://creativecommons.org/licenses/by-nc-sa/3.0/
+
+Details
+	Play : http://www.mindcookin.com/coconutkong/
+	Source Code : https://dl.dropbox.com/u/5633251/CoconutKong.zip
+
+	Santiago Bernabé García
+	Udacity ID : mindcookin@gmail.com
