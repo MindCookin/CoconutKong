@@ -28,13 +28,16 @@ ul#stateButtons a.btnPause:hover { background-position: -454px -2px;}
 ul#stateButtons a.btnInfo{	background-image: url('../images/atlas.png');	background-position: -205px -104px;}
 ul#stateButtons a.btnInfo:hover{	background-position: -164px -104px;}
 
-a.btnPlay, a.btnPlayAgain {	width  : 100px;	height : 100px;	display: block;	background-image: url('../images/atlas.png');	background-position : -266px -2px;	text-indent: -10000px;	overflow: hidden;	margin : 0 auto;}
-a.btnPlay:hover, a.btnPlayAgain:hover {	background-position: -164px -2px; }
+a.btnPlayAgain {	width  : 100px;	height : 100px;	display: block;	background-image: url('../images/atlas.png');	background-position : -266px -2px;	text-indent: -10000px;	overflow: hidden;	margin : 0 auto;}
+a.btnPlayAgain:hover {	background-position: -164px -2px; }
 
 #helpPopup, #infoPopup, #finishPopup { font-family: 'LondrinaSolidRegular', Arial, sans-serif;	display : block;	background-image: url('../images/popupBackground.png');	background-repeat: no-repeat;	position: absolute;	width: 575px;	height: 470px;    top : 10px;    left : 3px;    padding : 105px 0 0 0;    z-index: 10;}
 #helpPopup p, #finishPopup p {	margin : 5px auto 0;	width : 350px;	color : #7ec122;	font-size: 35px;}
 #finishPopup p  { font-size: 28px;}
-
+#mouseGameplay p, #orientationGameplay p { font-size: 16px; color:#000000; }
+#orientationGameplay, #mouseGameplay { background-color: #5EA102; margin : 5px auto 0; padding : 10px;	width : 350px; }
+#orientationGameplay { margin-top : 20px; }
+#helpPopup { padding-top:80px;}
 
 #infoPopup { padding-top: 30px; height : 530px; }
 #infoPopup div.textWrapper { width: 350px; margin : 67px auto 0px;}
@@ -42,11 +45,15 @@ a.btnPlay:hover, a.btnPlayAgain:hover {	background-position: -164px -2px; }
 #infoPopup ul { list-style:  none; font: 12px Arial, Helvetica, sans-serif; }
 #infoPopup a { color : #7EC122; }
 #infoPopup a:hover { color : #FFFFFF; }
-#infoPopup a.btnBackToGame { display: block; padding: 3px 5px 5px; margin : 0 auto; width : 100px; background: #5EA102; color: #000000; text-align: center;}
-#infoPopup a.btnBackToGame:hover { background: #000000; color: #5EA102; }
+a.btnPlayMouse, a.btnPlayOrientation, #infoPopup a.btnBackToGame { font-size: 16px; display: block; padding: 3px 5px 5px; margin : 0 auto; width : 100px; background: #5EA102; color: #000000; text-align: center;}
+a.btnPlayMouse:hover, a.btnPlayOrientation:hover, #infoPopup a.btnBackToGame:hover { background: #000000; color: #5EA102; }
 
+a.btnPlayMouse, a.btnPlayOrientation { width: 150px; margin-top : 10px; background: #000000; color: #5EA102; }
+a.btnPlayMouse:hover, a.btnPlayOrientation:hover { background: #7EC122; color: #000000; }
 
 hr {    clear: both;    visibility: hidden;    height: 0px;}
-p#fps {	position : absolute;	top : 0px;	left : 0px;	width : 100px;	color : #FFFFFF;	background : #000000;	font : 20px Arial, Helvetica, sans-serif;	padding : 5px; }
+p#fps, p#tilt {	position : absolute;	top : 0px;	left : 0px;	width : 100px;	color : #FFFFFF;	background : #000000;	font : 20px Arial, Helvetica, sans-serif;	padding : 5px; }
+p#tilt { top : 100px;  left : -100px; 	width : 200px; }
 
 .centered { text-align: center; }
+.red{ color : #AC0200!important; }

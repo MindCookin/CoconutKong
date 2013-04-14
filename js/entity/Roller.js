@@ -19,7 +19,10 @@ RollerClass = EntityClass.extend({
 	maxFrames		: 5,
 	
 	update 	: function(){
-		this.joint.SetMotorSpeed ( ( gInputEngine.mouse.x - ( this.rolyCenter.x * world.scale ) ) / 300 )
+		
+		if( gInputEngine.useMouse )
+			this.joint.SetMotorSpeed ( ( gInputEngine.mouse.x - ( this.rolyCenter.x * world.scale ) ) / 300 );
+			
 	},
 	
 	draw : function(){

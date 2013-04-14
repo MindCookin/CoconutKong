@@ -7,8 +7,6 @@ GameEngineClass = Class.extend({
 	//-----------------------------
 	setup: function () {
 		
-		gInputEngine.setup();
-		
 		gGameEngine.spawnEntity('Roller');
 		gGameEngine.spawnEntity('Player');
 

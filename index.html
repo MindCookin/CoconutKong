@@ -4,6 +4,8 @@
 		<meta http-equiv="content-type" content="text/html; charset=us-ascii">
 
 		<meta charset="utf-8">
+		
+		<link rel="shortcut icon" href="images/favicon.ico">
 
 		<title>Coconut Kong</title>
 		
@@ -22,9 +24,9 @@
 		<script src="js/util/core.js"></script>
 		<script src="js/util/general.js"></script>
 		<script src="js/util/xhr.js"></script>
+		<script src="js/util/SoundManager.js"></script>
 		
 		<script src="js/World.js"></script>
-		<script src="js/util/SoundManager.js"></script>
 		<script src="js/InputEngine.js"></script>
 		<script src="js/GameEngine.js"></script>
 		
@@ -50,6 +52,7 @@
 		<div id="wrapper">
 			
 			<p id="fps">FPS container</p>
+			<!-- <p id="tilt">TILT container</p> -->
 			
 			<h1>Coconut Kong</h1>
 			
@@ -100,10 +103,18 @@
 					</div>
 				</div>
 				<div id="helpPopup">
-					<p>Move over your mouse to rotate the stage.</p>
 					<p>Bring the coconut to our hungry Kong, you know he will appreciate it!</p>
 						<br />
-					<a class="btnPlay" href="#">Play!</a>
+						
+					<div id="mouseGameplay">
+						<p>Move over your mouse to rotate the stage.</p>
+						<a class="btnPlayMouse" href="#">MOUSE MODE</a>
+					</div>
+					<div id="orientationGameplay">
+						<p>Tilt your device to drive the coconut up and down.</p>
+						<p>Be careful, motion-sensor it's very sensible!</p>
+						<a class="btnPlayOrientation" href="#">TILT MODE</a>
+					</div>
 					<p class="centered"><img src="images/ajax-loader.gif" title="loading..." /></p>
 				</div>
 				<div id="finishPopup">

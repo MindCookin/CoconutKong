@@ -29,7 +29,23 @@ WorldClass = Class.extend({
 		this.b2world.SetContactListener( this.contactListener );
 	},
 	
+	resetGravity : function(){
+		this.b2world.SetGravity( new b2Vec2( 0, 10 ) );
+	},
+	
+	resetRotations : function(){
+
+	  	for ( var joint = this.b2world.GetJointList(); joint; joint = joint.GetNext() )
+  			joint.SetMotorSpeed(0);
+  			
+  		for ( var body = this.b2world.GetBodyList(); body; body = body.GetNext() )
+  			body.SetAngle(0);
+	},
+	
 	update : function () {
+		
+		if( gInputEngine.useOrientation )
+			this.b2world.SetGravity( new b2Vec2( gInputEngine.orientationPosition.x, gInputEngine.orientationPosition.y ) );
         
         this.b2world.Step( 1/30, 10, 10);
 //		this.b2world.DrawDebugData();

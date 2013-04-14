@@ -66,7 +66,8 @@ $(document).ready(function(){
 		
 	gSM.create();
 	playSoundInstance("sounds/background.mp3", true);
-//	$(window).resize( centerCanvas ); 
+	
+	gInputEngine.setup();	
 });
 
 

@@ -7,16 +7,27 @@ ButtonsClass = Class.extend({
 //		$('#helpPopup').fadeOut(0);
 	
 		$('#stateButtons a').click( gButtons.clickHandler )
-		$('.btnPlay').click( gButtons.clickHandler )
+		$('.btnPlayMouse').click( gButtons.clickHandler )
+		$('.btnPlayOrientation').click( gButtons.clickHandler )
 		$('.btnBackToGame').click( gButtons.clickHandler )
 		$('.btnPlayAgain').click( gButtons.clickHandler )
 		
-		$('.btnPlay').fadeOut();
+		$('#mouseGameplay').fadeOut();
+		$('#orientationGameplay').fadeOut();
 	},
 	
 	showBtnPlay : function(){
 		$('#helpPopup img').hide( 400, function(){
-			$('.btnPlay').fadeIn( 400 );
+			$('#mouseGameplay').fadeIn( 400 );
+			$('#orientationGameplay').fadeIn( 400 );
+			
+			
+			if( !gInputEngine.orientationSupport )
+			{
+				$('#orientationGameplay').html('<p class="red">TILT MODE is not supported on this device or browser.</p>');
+			} else if( !gInputEngine.mouseSupport ){
+				$('#mouseGameplay').html('<p class="red">MOUSE MODE is not supported on this device or browser.</p>');
+			}
 		});
 	},
 	
@@ -51,7 +62,28 @@ ButtonsClass = Class.extend({
 				}); 
 				
 			break;
-			case "btnPlay" 	: 
+			case "btnPlayOrientation" 	:
+			
+				if( gInputEngine.orientationSupport )
+				{
+					world.resetRotations();
+					
+					gInputEngine.useMouse 		= false;
+					gInputEngine.useOrientation = true;
+					
+					$('#canvas').fadeIn( 400 );
+					$('#helpPopup').fadeOut( 400, function(){
+						gManager.resume();	
+					});
+				}
+				 
+			break;
+			case "btnPlayMouse" 	: 
+				
+				gInputEngine.useMouse 		= true;
+				gInputEngine.useOrientation = false;
+				
+				world.resetGravity();
 				
 				$('#canvas').fadeIn( 400 );
 				$('#helpPopup').fadeOut( 400, function(){
@@ -81,6 +113,8 @@ ButtonsClass = Class.extend({
 				});
 			break;
 		}
+		
+		return false;
 	},
 	
 	showFinishPopup : function(){

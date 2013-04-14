@@ -57,6 +57,8 @@ LevelSelectorClass = Class.extend ({
 	clickHandler : function( ){
 		var lvl = $(this).attr('href').substr(1, 2);
 		gManager.changeLevel( lvl );
+		
+		return false;
 	},
 	
 	enableSwitch : function(){
