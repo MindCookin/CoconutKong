@@ -115,11 +115,11 @@ InputEngineClass = Class.extend({
 			{
 				if( z > 90 && z < 270 )
 				{
-					gInputEngine.orientationPosition.x = y / 2;
-					gInputEngine.orientationPosition.y = x / 2;
+					gInputEngine.orientationPosition.x = y;
+					gInputEngine.orientationPosition.y = x;
 				} else {
-					gInputEngine.orientationPosition.x = -y / 2;
-					gInputEngine.orientationPosition.y = -x / 2;
+					gInputEngine.orientationPosition.x = -y;
+					gInputEngine.orientationPosition.y = -x;
 				}
 			} else {
 				if( z > 90 && z < 270 )
@@ -134,29 +134,14 @@ InputEngineClass = Class.extend({
 			
 		} else {
 			
-			if ( !gInputEngine.is_firefox )
+			if( z < 180 )
 			{
-				if( z < 180 )
-				{
-					gInputEngine.orientationPosition.x = -x / 2;
-					gInputEngine.orientationPosition.y = y / 2;
-				} else {
-					gInputEngine.orientationPosition.x = x / 2;
-					gInputEngine.orientationPosition.y = -y / 2;
-				}
+				gInputEngine.orientationPosition.x = -x;
+				gInputEngine.orientationPosition.y = y;
+			} else {
+				gInputEngine.orientationPosition.x = x;
+				gInputEngine.orientationPosition.y = -y;
 			}
-			else 
-			{
-				if( z < 180 )
-				{
-					gInputEngine.orientationPosition.x = -x;
-					gInputEngine.orientationPosition.y = y;
-				} else {
-					gInputEngine.orientationPosition.x = x;
-					gInputEngine.orientationPosition.y = -y;
-				}
-			}
-			
 		}
 	}
 });
