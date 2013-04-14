@@ -1,66 +1,67 @@
-/// object types
- var END 		= "end";
- var PLAYER		= "player";
- var PLATFORM	= "platform";
 
-// gLevels['LEVEL_URL'] 
+/*********************************************
+ *	
+ * LevelClass handles Level changes, 
+ * and contains references to all the levels.
+ * 
+ * Ensures scenario creation.
+ * 
+ ************************************************/
+
+// Object types used as constants 
+// for TiledMap objects
+var END 		= "end";
+var PLAYER		= "player";
+var PLATFORM	= "platform";
+
+// gLevels['ID'] 
 //
-// would return the LevelClass object associated
+// Will return the LevelClass object associated
 // to that ID, assuming that it exists.
 var gLevels = {};
 
-//-----------------------------------------
 LevelClass = Class.extend({
 
-    // The URL path that we grabbed our map
-    // from.
+	// the unique ID for this level
 	id: 0,
 	
-	// JSON map to load Map
+	// the JSON map
 	mapJSON : null,
 	
+	// our atlas image
 	atlasImage : null,
 	
-    // An array of all the mappedObjects in our map.
+	// our physics objects
 	mappedObjects: [],
-	
-    // An array of all the entities in our map.
-	entities: [],
-	
-	//-----------------------------------------
-	init: function () {},
 
-	//-----------------------------------------
+	/**
+	 * Loads our level
+	 * 
+ 	 * @param {id} int
+ 	 * @param {JSON} mapData
+ 	 * @param {Image} image
+	 */ 
 	load: function ( id, mapData, image ) {
-		// Store the URL of the spritesheet we want.
+
         this.id = id;
 		this.mapJSON = mapData;
 		this.atlasImage = image;
 
-        // Store this LevelClass in our global
-        // dictionary gLevels defined above.
 		gLevels[ id ] = this;
 	},
 
-	//-----------------------------------------
-    // Parse the JSON file passed in as 'atlasJSON'
-    // that is associated to this map.
+	/**
+	 * Used to parse our JSON atlas
+	 * 
+ 	 * @param {JSON} atlasJSON 
+	 */
 	parseAtlasDefinition: function ( atlasJSON ) {
-        // Parse the input 'atlasJSON' using the
-        // JSON.parse method and store it in a
-        // variable.
 
 		var key, object, layer, tileset;
         var parsed = JSON.parse(atlasJSON);
-        
-        /*
-		for( key in parsed.tilesets) {
-			
-			tileset = parsed.tilesets[ key ];
-			
-			this.defTileSet( tileset.firstgid, tileset.image, tileset.imageheight, tileset.imagewidth, tileset.tileheight, tileset.tilewidth );
-		}*/
 
+		// we iterate through our objects and layers
+		// and set our physics objects 
 		for( key in parsed.layers) {
 			
 			layer = parsed.layers[key];
@@ -74,19 +75,26 @@ LevelClass = Class.extend({
 					{
 						object = layer.objects[i];
 						
+						// we create a new object
 						if( object.type && object.visible )
 							this.defObject( object.type, object.x, object.y, object.width, object.height, object.ellipse );
 					}	
 				}
-	/*			
-				if ( layer.type === "tilelayer")
-				{
-					this.defTileLayer( layer.name, layer.x, layer.y, layer.width, layer.height, layer.data );
-				}
-	*/		}
+			}
 		}
 	},
 	
+	/**
+	 * This function creates an object 
+	 * and adds it to our mappedObjects array
+	 * 
+ 	 * @param {String} id
+ 	 * @param {int} x
+ 	 * @param {int} y
+ 	 * @param {int} w
+ 	 * @param {int} h
+ 	 * @param {Boolean} ellipse 
+	 */
 	defObject : function ( type, x, y, w, h, ellipse ){
 		
 		var object = {
@@ -98,32 +106,30 @@ LevelClass = Class.extend({
 			"ellipse" : ellipse
 		};
 
-        // We push this new object into
-        // our array of mappedObjects,
-        // at the end of the array.
+		// add our object to the mappedObjects array
 		this.mappedObjects.push( object );
-	}, 
-	
-	defTileLayer : function ( name, x, y, h, w, data )
-	{
-		
-	}, 
-	
-	defTileSet : function ( firstgid, image, imageheight, imagewidth, tileheight, tilewidth )
-	{
-		
 	}
 });
 
+/**
+ * Global function used to create the entire scenario, both graphics and physics. 
+ *   
+ * @param {uint} id
+ */
 function createScenario( id )
 {
+	// Hack for no existing id 
+	// ( same as "Player has finished the game")
 	if( !gLevels[ id ] )
 	{
+		// if the player has not finished yet
+		// we show him a Kongratulations popup
 		if( !gManager.finished)
 		{
 			gButtons.showFinishPopup();
 			return false;
 		}
+		// else, we restart from level 1
 		else
 		{
 			gManager.actualLevel = 1;
@@ -131,12 +137,18 @@ function createScenario( id )
 		}
 	}
 	
+	// if we have not loaded the map objects yet, 
+	// we load them into our mappedObjects array
 	if( gLevels[ id ].mappedObjects.length == 0 )
 		gLevels[ id ].parseAtlasDefinition( gLevels[ id ].mapJSON );
 	
+	// load the map graphics
     gMap.load( gLevels[ id ].mapJSON, gLevels[ id ].atlasImage );
+    
+    // restart our main entity ( Roller )
     gGameEngine.getEntity('Roller').createBody();
 	
+	// we create the physics objects
 	var sceneObjects = gLevels[ id ].mappedObjects;
 	for ( var key in sceneObjects )
 		__createObject( sceneObjects[key] );
@@ -144,6 +156,12 @@ function createScenario( id )
 	return true;
 }
 
+/**
+ * Private function used to create 
+ * our physics objects, related  
+ *   
+ * @param {Object} objectMapped
+ */
 function __createObject( objectMapped )
 {
 	// offset for centering in the canvas
@@ -158,10 +176,12 @@ function __createObject( objectMapped )
 		h : objectMapped.h / world.scale
 	};
 	
+	// switch between our entities
+	// depending on objectMapped type
 	switch( objectMapped.type )
 	{ 
 		case END			: gGameEngine.getEntity('Roller').addBox( aux.x, aux.y, aux.w, aux.h, true );		break;
-		case PLAYER			: gGameEngine.getEntity('Player').createSphere( aux.x, aux.y );						break;
+		case PLAYER			: gGameEngine.getEntity('Coconut').createSphere( aux.x, aux.y );						break;
 		case PLATFORM 		: gGameEngine.getEntity('Roller').addBox( aux.x, aux.y, aux.w, aux.h, false );		break;
 	}
 }

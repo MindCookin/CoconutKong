@@ -1,3 +1,11 @@
+
+/*********************************************
+ *	
+ * 	A copy of the original Udacity's
+ * 	SoundManager, with modifications on assets loading
+ * 
+ ************************************************/
+
 SoundManager = Class.extend({
 	
 	clips : {},

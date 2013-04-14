@@ -1,5 +1,16 @@
+
+/*********************************************
+ *	
+ * ButtonsClass is used to handle 
+ * all button events from all our views, specially popups
+ * 
+ ************************************************/
+
 ButtonsClass = Class.extend({
 	
+	/**
+	 *	Initializer for all our event handlers  
+	 */
 	setup : function(){
 	
 		$('#infoPopup').fadeOut(0);
@@ -16,25 +27,44 @@ ButtonsClass = Class.extend({
 		$('#orientationGameplay').fadeOut();
 	},
 	
+	/**
+	 *	Shows Play button 
+	 * 	called when all our assets are loaded
+	 */
 	showBtnPlay : function(){
+		
+		// jQuery effects
 		$('#helpPopup img').hide( 400, function(){
+			
 			$('#mouseGameplay').fadeIn( 400 );
 			$('#orientationGameplay').fadeIn( 400 );
 			
-			
+			// Check if we can play on tilt mode
 			if( !gInputEngine.orientationSupport )
 			{
 				$('#orientationGameplay').html('<p class="red">TILT MODE is not supported on this device or browser.</p>');
-			} else if( !gInputEngine.mouseSupport ){
+			} 
+			
+			// Check if we can play on mouse mode
+			if( !gInputEngine.mouseSupport )
+			{
 				$('#mouseGameplay').html('<p class="red">MOUSE MODE is not supported on this device or browser.</p>');
 			}
 		});
 	},
 	
+	/**
+	 *	Click/touch event handler
+	 */
 	clickHandler : function(){
 		
+		
+		// swith over the currentTarget's class name 
+		// to perform an action  
 		switch( $(this).attr("class") )
 		{
+			// switch to unmuted mode, 
+			// if Web Audio is supported
 			case "btnMute" 	:
 			
 				if( gSM._context )
@@ -47,11 +77,17 @@ ButtonsClass = Class.extend({
 				}
 				
 			break;
+			
+			// switch to muted mode, 
+			// only called if Web Audio is supported
+			// as if not this button's class name won't exist
 			case "btnUnmute":
 				$(this).addClass('btnMute');
 				$(this).removeClass('btnUnmute');
 				gSM.toggleMute(); 
 			break;
+			
+			// pause the game
 			case "btnPause" :
 				
 				gManager.pause();
@@ -62,14 +98,17 @@ ButtonsClass = Class.extend({
 				}); 
 				
 			break;
+			
+			// play the game on Tilt Mode
 			case "btnPlayOrientation" 	:
 			
 				if( gInputEngine.orientationSupport )
 				{
-					world.resetRotations();
-					
 					gInputEngine.useMouse 		= false;
 					gInputEngine.useOrientation = true;
+					
+					// prevent the game from switching over gametypes bugs
+					world.resetRotations();
 					
 					$('#canvas').fadeIn( 400 );
 					$('#helpPopup').fadeOut( 400, function(){
@@ -78,11 +117,14 @@ ButtonsClass = Class.extend({
 				}
 				 
 			break;
+			
+			// play the game on Mouse Mode
 			case "btnPlayMouse" 	: 
 				
 				gInputEngine.useMouse 		= true;
 				gInputEngine.useOrientation = false;
 				
+				// prevent the game from switching over gametypes bugs
 				world.resetGravity();
 				
 				$('#canvas').fadeIn( 400 );
@@ -90,6 +132,8 @@ ButtonsClass = Class.extend({
 					gManager.resume();	
 				});
 			break;
+			
+			// show info popup
 			case "btnInfo" 	: 
 				
 				gManager.pause();
@@ -99,24 +143,38 @@ ButtonsClass = Class.extend({
 					
 				}); 
 			break;
+			
+			// go back from info popup
 			case "btnBackToGame" 	: 
 				$('#canvas').fadeIn( 400 );
 				$('#infoPopup').fadeOut( 400, function(){
 					gManager.resume();	
 				});
 			break;
+			
+			// plays the game when 
+			// the user has completed the whole levels
 			case "btnPlayAgain" 	: 
 				
 				$('#finishPopup').fadeOut( 400, function(){
+					
+					// enables level switching
 					gLevelSelector.enableSwitch();
+					
+					// go to first level
 					gManager.changeLevel(1);
 				});
 			break;
 		}
 		
+		// prevent anchor navigation
 		return false;
 	},
 	
+	
+	// shows finish popup
+	// the only popup opened without 
+	// a mouse event
 	showFinishPopup : function(){
 		
 		gManager.finished 	= true;

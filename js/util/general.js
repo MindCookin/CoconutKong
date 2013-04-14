@@ -1,8 +1,14 @@
 
-/***********************************
- * 	Animation Frame
- *************************************/
+/*********************************************
+ *	
+ * Collection of global snippets to help development 
+ * 
+ ************************************************/
 
+
+/**
+ * 	Animation Frame
+ */
 window.requestAnimFrame = (function () {
   return  window.requestAnimationFrame        ||
           window.webkitRequestAnimationFrame  ||
@@ -14,10 +20,9 @@ window.requestAnimFrame = (function () {
           };
 })();
 
-/***********************************
+/**
  * 	Frames per second  
- *************************************/
-
+ */
 var fps = 0, now, lastUpdate = (new Date)*1 - 1;
 
 // The higher this value, the less the FPS will be affected by quick changes
@@ -41,10 +46,9 @@ function updateFPS(){
   lastUpdate = now;
 }
 
-/***********************************
+/**
  * 	Canvas centerer
- *************************************/
-
+ */
 function centerCanvas(){
 
   	$('#canvas').css({
@@ -55,9 +59,9 @@ function centerCanvas(){
 }
 
 
-/************************************
- *	Mouse detector
- * ************************************/
+/**
+ *	Mouse Event detector
+ */
  function isMouseEventSupported(eventName) {
     var el = document.createElement('div');
     eventName = 'on' + eventName;
@@ -69,3 +73,16 @@ function centerCanvas(){
     el = null;
     return isSupported;
   }
+  
+  
+/**
+ * XMLHttpRequest Helper 
+ */
+function xhrGet(reqUri,callback) {
+	var xhr = new XMLHttpRequest();
+
+	xhr.open("GET", reqUri, true);
+	xhr.onload = callback;
+
+	xhr.send();
+}  

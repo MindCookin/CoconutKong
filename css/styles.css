@@ -1,13 +1,27 @@
+/**
+ * 	General tags
+*/
+
 html {	width: 100%;	height: 100%;}
 body {	margin: 0; 	padding: 0;	background-image: url('../images/background.jpg');	width: 100%;	height: 100%;	}
 
+/**
+ * 	Containers
+ */
 #gameWrapper {    width : 575px;    height : 575px;  	display: block;	float : right;	background-image: url('../images/earth_foreground.png');	background-repeat: no-repeat;	background-position: 0 6px;	position : relative;}
 #canvas {  	position : absolute;	top : 0px;	left : 0px;	z-index: 1;	}
 #wrapper {	position : relative;	width : 700px;    padding-left: 0;    padding-right: 0;    margin-left: auto;    margin-right: auto;}
 
+/**
+ * 	Special tags
+ */
 h1 {	width	: 505px;	height 	: 86px;    padding-left: 0;    padding-right: 0;    margin-left: auto;    margin-right: auto;    display: block;	background-image: url('../images/hungrytitle.png');	background-repeat: no-repeat;	text-indent: -10000px;	overflow: hidden;}
 a {  text-decoration: none; }
+hr {    clear: both;    visibility: hidden;    height: 0px;}
 
+/**
+ * 	Levels List Sidebar
+ */
 ul#levelsList {	float : right;     display: block;    margin: 50px 0 0 -8px;    padding: 0;}
 ul#levelsList li a { width : 70px; font-family: 'LondrinaSolidRegular', Arial, sans-serif; text-transform:uppercase;    display: block;    margin: 5px 0 0 0;    padding: 5px 10px 5px 13px;	list-style: none;	font-size: 17px;	background-color: #000000;	color : #7ec122;	cursor: default;}
 ul#levelsList li.active a {	text-indent : 10px;	background-color: #7ec122;	color : #000000; padding: 5px 17px 5px 13px;}
@@ -16,6 +30,9 @@ ul#levelsList li a.completed {	cursor : pointer; }
 ul#levelsList li a.completed:hover {	color : #000000;	background-color: #5EA102;}
 ul#levelsList li span.timer { display: block; font-size: 13px; font-weight : bold; font-family:Arial, Helvetica, sans-serif; color:#7EC122; background: #000000; width: 50px; padding : 5px 0px 5px 10px;}
 
+/**
+ * 	State buttons
+ */
 ul#stateButtons {	list-style: none;	padding: 0;	margin : 0;	position : absolute;	top : 30px;	left : 433px;	z-index: 5;	width : 200px;}
 ul#stateButtons a {	display: block;	width  : 41px;	height : 41px;	display: block;	text-indent: -10000px;	overflow: hidden;}
 ul#stateButtons li {	width : 41px;	display: block;	float: left;}
@@ -28,10 +45,10 @@ ul#stateButtons a.btnPause:hover { background-position: -454px -2px;}
 ul#stateButtons a.btnInfo{	background-image: url('../images/atlas.png');	background-position: -205px -104px;}
 ul#stateButtons a.btnInfo:hover{	background-position: -164px -104px;}
 
-a.btnPlayAgain {	width  : 100px;	height : 100px;	display: block;	background-image: url('../images/atlas.png');	background-position : -266px -2px;	text-indent: -10000px;	overflow: hidden;	margin : 0 auto;}
-a.btnPlayAgain:hover {	background-position: -164px -2px; }
-
-#helpPopup, #infoPopup, #finishPopup { font-family: 'LondrinaSolidRegular', Arial, sans-serif;	display : block;	background-image: url('../images/popupBackground.png');	background-repeat: no-repeat;	position: absolute;	width: 575px;	height: 470px;    top : 10px;    left : 3px;    padding : 105px 0 0 0;    z-index: 10;}
+/**
+ * 	Popups 
+ */
+#helpPopup, #infoPopup, #finishPopup { font-family: 'LondrinaSolidRegular', Arial, sans-serif;	display : block;	background-image: url('../images/popupBackground.png');	background-repeat: no-repeat;	position: absolute;	width: 575px;	height: 500px;    top : 10px;    left : 3px;    padding : 105px 0 0 0;    z-index: 10;}
 #helpPopup p, #finishPopup p {	margin : 5px auto 0;	width : 350px;	color : #7ec122;	font-size: 35px;}
 #finishPopup p  { font-size: 28px;}
 #mouseGameplay p, #orientationGameplay p { font-size: 16px; color:#000000; }
@@ -43,17 +60,30 @@ a.btnPlayAgain:hover {	background-position: -164px -2px; }
 #infoPopup div.textWrapper { width: 350px; margin : 67px auto 0px;}
 #infoPopup h2, #infoPopup h3 , #infoPopup p { color : #5EA102; margin : 0; }
 #infoPopup ul { list-style:  none; font: 12px Arial, Helvetica, sans-serif; }
+
+/**
+ * 	Popup's buttons
+ */
 #infoPopup a { color : #7EC122; }
 #infoPopup a:hover { color : #FFFFFF; }
+
+a.btnPlayAgain {	width  : 100px;	height : 100px;	display: block;	background-image: url('../images/atlas.png');	background-position : -266px -2px;	text-indent: -10000px;	overflow: hidden;	margin : 0 auto;}
+a.btnPlayAgain:hover {	background-position: -164px -2px; }
+
 a.btnPlayMouse, a.btnPlayOrientation, #infoPopup a.btnBackToGame { font-size: 16px; display: block; padding: 3px 5px 5px; margin : 0 auto; width : 100px; background: #5EA102; color: #000000; text-align: center;}
 a.btnPlayMouse:hover, a.btnPlayOrientation:hover, #infoPopup a.btnBackToGame:hover { background: #000000; color: #5EA102; }
 
 a.btnPlayMouse, a.btnPlayOrientation { width: 150px; margin-top : 10px; background: #000000; color: #5EA102; }
 a.btnPlayMouse:hover, a.btnPlayOrientation:hover { background: #7EC122; color: #000000; }
 
-hr {    clear: both;    visibility: hidden;    height: 0px;}
+/** 
+ * 	Debugging
+ */
 p#fps, p#tilt {	position : absolute;	top : 0px;	left : 0px;	width : 100px;	color : #FFFFFF;	background : #000000;	font : 20px Arial, Helvetica, sans-serif;	padding : 5px; }
 p#tilt { top : 100px;  left : -100px; 	width : 200px; }
 
+/**
+ * 	General purposes classes
+ */
 .centered { text-align: center; }
 .red{ color : #AC0200!important; }

@@ -1,4 +1,11 @@
 
+/*********************************************
+ *	
+ * 	A copy of the original Udacity's
+ * 	SpriteSheetClass, with modifications on assets loading
+ * 
+ ************************************************/
+
 
 var TILEDMapClass = Class.extend({
     // This is where we store the full parsed
@@ -54,24 +61,15 @@ var TILEDMapClass = Class.extend({
     // has finished loading.
     fullyLoaded: false,
 
-	//-----------------------------------------
-    // Load the json file at the url 'map' into
-    // memory. This is similar to the requests
-    // we've done in the past using
-    // XMLHttpRequests.
+	//--------------- MODIFIED --------------
+    // Load the json file at passed as parameter
+    // and the imageAtlas related
+    //-----------------------------------------
+    
     load: function (map, image ) {
     	
     	gMap.image = image;
     	gMap.parseMapJSON(map);
-    	
-/*
-        // Perform an XMLHttpRequest to grab the
-        // JSON file at url 'map'.
-        xhrGet(map, function (data) {
-            // Once the XMLHttpRequest loads, call the
-            // parseMapJSON method.
-            gMap.parseMapJSON(data.responseText);
-        });*/
     },
 
     //-----------------------------------------
@@ -110,28 +108,14 @@ var TILEDMapClass = Class.extend({
 
         // Loop through 'map.tilesets', an Array...
         for(var i = 0; i < map.tilesets.length; i++) {
-
-/*            // ...loading each of the provided tilesets as
-            // Images...
-            var img = new Image();
-            img.onload = function () {
-                // ...Increment the above 'imgLoadCount'
-                // field of 'TILEDMap' as each tileset is 
-                // loading...
-                gMap.imgLoadCount++;
-                
-                if (gMap.imgLoadCount === map.tilesets.length) {
-                	
-                    // ...Once all the tilesets are loaded, 
-                    // set the 'fullyLoaded' flag to true...
- */                   gMap.fullyLoaded = true;
- /*               }
-            };
-
-            // The 'src' value to load each new Image from is in
-            // the 'image' property of the 'tilesets'.
-            img.src = map.tilesets[i].image;
-*/
+			
+			//------------ MODIFIED ---------
+			// we don't need to load images, 
+			// as we only have one atlas sheet 
+			// and all our objects are contained there
+			//--------------------------------
+			 
+		    gMap.fullyLoaded = true;
                     
             // This is the javascript object we'll create for
             // the 'tilesets' Array above. First, fill in the

@@ -1,3 +1,11 @@
+
+/*********************************************
+ *	
+ * 	A copy of the original Udacity's
+ * 	SpriteSheetClass, with modifications on assets loading
+ * 
+ ************************************************/
+
 // We keep a global dictionary of loaded sprite-sheets,
 // which are each an instance of our SpriteSheetClass
 // below.

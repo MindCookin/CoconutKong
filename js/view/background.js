@@ -1,20 +1,39 @@
+
+/*********************************************
+ *	
+ * BackgroundClass is used to handle 
+ * the game's background drawing.
+ * 
+ ************************************************/
+
 var BackgroundClass = Class.extend({
 	
+	// the image url
 	backgroundURL : 'images/earth_circle.png',
-	background : null,
 	
-	imgCount: 0,
+	// the image object 
+	image : null,
 	
+	// Boolean to handle if image is loaded
 	fullyLoaded : false,
 	
-	load: function ( img ) {
+	/**
+	 * Loads the given image into our "background" variable 
+	 * 
+ 	 * @param {Image} image
+	 */
+	load: function ( image ) {
     	
-    	gBackground.background = img;
+    	gBackground.image = image;
     	gBackground.fullyLoaded = true;
     },
     
+    
+	/**
+	 * Draws background image 
+	 */
     drawBackground : function(){
-    	context.drawImage( gBackground.background, 0, 0, gBackground.background.width, gBackground.background.height, -gBackground.background.width/2, -gBackground.background.height/2, gBackground.background.width, gBackground.background.height );
+    	context.drawImage( gBackground.image, 0, 0, gBackground.image.width, gBackground.image.height, -gBackground.image.width/2, -gBackground.image.height/2, gBackground.image.width, gBackground.image.height );
     }
 });
 
