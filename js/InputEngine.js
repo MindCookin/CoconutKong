@@ -101,7 +101,19 @@ InputEngineClass = Class.extend({
 		// check if we are in portrait
 		gInputEngine.orientationPortrait = (window.innerHeight > window.innerWidth );
 		
-		//------------ checked on Firefox Mobile and Chrome Mobile  
+		//------------ 
+		//------- Tested over Firefox Mobile, Chrome Mobile and Safari 
+		//-------
+		//------- Running on my Samsung Galaxy 2 pretty well.
+		//------- Unfortunately on iPad and Nexus7 coordinates are rotated
+		//-------
+		//------- At the time I haven't been able to find a 
+		//------- constant on the use of this coordinates 
+		//------- through browsers and devices.
+		//------- 
+		//------- Any solution/help will be really appreciated
+		//------- 
+		//------------  
 		// set the world's gravity 
 		// related with our x and y variables.
 		// There are multiply tricks here 
@@ -143,6 +155,9 @@ InputEngineClass = Class.extend({
 				gInputEngine.orientationPosition.y = -y;
 			}
 		}
+		
+		gInputEngine.orientationPosition.x = parseFloat(gInputEngine.orientationPosition.x).toFixed(2);
+		gInputEngine.orientationPosition.y = parseFloat(gInputEngine.orientationPosition.y).toFixed(2);
 	}
 });
 
