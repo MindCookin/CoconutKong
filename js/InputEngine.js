@@ -55,17 +55,9 @@ InputEngineClass = Class.extend({
 		
 		// tilt listener
 		if (window.DeviceOrientationEvent) {
-			
 		    window.addEventListener("deviceorientation", function ( event ) {
 		        gInputEngine.onTilt(event.beta, event.gamma, event.alpha);
-		    }, true);
-		    
-		} else if (window.DeviceMotionEvent) {
-			
-		    window.addEventListener('devicemotion', function ( event ) {
-		        gInputEngine.onTilt(event.acceleration.x * 2, event.acceleration.y * 2, event.acceleration.z * 2);
-		    }, true);
-			
+		    }, true);		    
 		}
 		
 	},
@@ -90,7 +82,7 @@ InputEngineClass = Class.extend({
 	 * @param {Number} y
 	 * @param {Number} z
 	 */
-	onTilt : function( x, y, z ){
+	onTilt : function( beta, gamma, alpha ){
 		
 		// use for debugging
 //		$("#tilt").text( (window.innerHeight > window.innerWidth) +"\n" + x +"\n"+y+"\n"+ z );
@@ -104,16 +96,18 @@ InputEngineClass = Class.extend({
 		//------------ 
 		//------- Tested over Firefox Mobile, Chrome Mobile and Safari 
 		//-------
-		//------- Running on my Samsung Galaxy 2 pretty well.
-		//------- Unfortunately on iPad and Nexus7 coordinates are rotated
-		//-------
-		//------- At the time I haven't been able to find a 
-		//------- constant on the use of this coordinates 
-		//------- through browsers and devices.
+		//------- Unfortunately it only works right on 
+		//------- two of the four possible positions of the phone.
+		//------- 
+		//------- Since we cannot prevent the browser to rotate
+		//------- like in native applications, it is a major
+		//------- problem trying to find the correct values for  
+		//------- each of the four positions
 		//------- 
 		//------- Any solution/help will be really appreciated
 		//------- 
-		//------------  
+		//------------
+		  
 		// set the world's gravity 
 		// related with our x and y variables.
 		// There are multiply tricks here 
@@ -121,43 +115,28 @@ InputEngineClass = Class.extend({
 		// device orientation ( z value ),
 		// to set the gravity always 
 		// to the bottom of the scenario
-		if( gInputEngine.orientationPortrait )
+		if ( gInputEngine.orientationPortrait )
 		{
-			if ( !gInputEngine.is_firefox ) // hack for firefox
+			if ( gInputEngine.is_firefox  )
 			{
-				if( z > 90 && z < 270 )
-				{
-					gInputEngine.orientationPosition.x = y;
-					gInputEngine.orientationPosition.y = x;
-				} else {
-					gInputEngine.orientationPosition.x = -y;
-					gInputEngine.orientationPosition.y = -x;
-				}
+				gInputEngine.orientationPosition.x = -parseFloat(gamma).toFixed(2);
+				gInputEngine.orientationPosition.y = -parseFloat(beta).toFixed(2);
 			} else {
-				if( z > 90 && z < 270 )
-				{
-					gInputEngine.orientationPosition.x = -y;
-					gInputEngine.orientationPosition.y = -x;
-				} else {
-					gInputEngine.orientationPosition.x = y;
-					gInputEngine.orientationPosition.y = x;
-				}
-			}
-			
-		} else {
-			
-			if( z < 180 )
+				gInputEngine.orientationPosition.x = parseFloat(gamma).toFixed(2);
+				gInputEngine.orientationPosition.y = parseFloat(beta).toFixed(2);
+			}	
+		} 
+		else 
+		{
+			if ( gInputEngine.is_firefox  )
 			{
-				gInputEngine.orientationPosition.x = -x;
-				gInputEngine.orientationPosition.y = y;
+				gInputEngine.orientationPosition.y = parseFloat(gamma).toFixed(2);
+				gInputEngine.orientationPosition.x = -parseFloat(beta).toFixed(2);
 			} else {
-				gInputEngine.orientationPosition.x = x;
-				gInputEngine.orientationPosition.y = -y;
+				gInputEngine.orientationPosition.y = -parseFloat(gamma).toFixed(2);
+				gInputEngine.orientationPosition.x = parseFloat(beta).toFixed(2);
 			}
 		}
-		
-		gInputEngine.orientationPosition.x = parseFloat(gInputEngine.orientationPosition.x).toFixed(2);
-		gInputEngine.orientationPosition.y = parseFloat(gInputEngine.orientationPosition.y).toFixed(2);
 	}
 });
 
