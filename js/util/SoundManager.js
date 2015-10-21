@@ -18,14 +18,14 @@ SoundManager = Class.extend({
 	create: function () {
 		
 		try {
-	       	gSM._context = new webkitAudioContext();
+	       	gSM._context = new AudioContext();
 		} catch(e){
 //			window.alert("Your browser do not support Web Audio, sorry.");
 		}
 		
 		if( gSM._context )
 		{
-        	gSM._mainNode = gSM._context.createGainNode(0);
+        	gSM._mainNode = gSM._context.createGain();
         	gSM._mainNode.connect( gSM._context.destination );
         }
 	},
@@ -101,12 +101,11 @@ SoundManager = Class.extend({
 		
 		var currentClip = null;
 		currentClip = gSM._context.createBufferSource();
-        currentClip.buffer = sd.b;
-		currentClip.gain.value = volume;
+    currentClip.buffer = sd.b;
 		currentClip.loop = looping;
 		
 		currentClip.connect( gSM._mainNode );
-        currentClip.noteOn( 0 );
+    currentClip.start();
 
 		return true;
 	}
