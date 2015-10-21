@@ -54,7 +54,7 @@ InputEngineClass = Class.extend({
 		gInputEngine.mouseSupport = !( isMouseEventSupported( 'touchstart' ) );
 		
 		// tilt listener
-		if (window.DeviceOrientationEvent) {
+		if (window.DeviceOrientationEvent && navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
 		    window.addEventListener("deviceorientation", function ( event ) {
 		        gInputEngine.onTilt(event.beta, event.gamma, event.alpha);
 		    }, true);		    
